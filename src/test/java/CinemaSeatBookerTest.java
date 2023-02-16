@@ -15,8 +15,15 @@ public class CinemaSeatBookerTest {
     }
 
     @Test
-    public void whenCustomerOrders1SeatAndTicketsRemainingIs15_returnA1() {
+    public void whenCustomerOrders1SeatAndIsFirstOrder_returnA1() {
         CinemaSeatBooker seatBooker = new CinemaSeatBooker();
         assertEquals("A1", seatBooker.getSeat(1));
+    }
+
+    @Test
+    public void whenCustomerOrders1SeatAndIsSecondOrder_returnA2() {
+        CinemaSeatBooker seatBooker = new CinemaSeatBooker();
+        seatBooker.getSeat(1);
+        assertEquals("A2", seatBooker.getSeat(1));
     }
 }

@@ -30,12 +30,19 @@ public class CinemaSeatBooker {
 
     private static final NavigableMap<Integer, String> ROW_NUMBER_SEAT_MAP = new TreeMap<>();
 
+    private static final int MAX_CINEMA_SEATS = 15;
+
+    private int filledCinemaSeats = 0;
+
     static {
         ROW_NUMBER_SEAT_MAP.put(5, "A");
     }
 
     public String getSeat(int order) {
-        return ROW_NUMBER_SEAT_MAP.ceilingEntry(order).getValue() + order;
+        var seatNum = (filledCinemaSeats % MAX_CINEMA_SEATS) + 1;
+        var seatId = ROW_NUMBER_SEAT_MAP.ceilingEntry(filledCinemaSeats).getValue() + seatNum;
+        filledCinemaSeats++;
+        return seatId;
 
     }
 
