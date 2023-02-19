@@ -1,14 +1,15 @@
 import org.example.CinemaSeatBooker;
 import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
+import java.util.Collection;
 
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CinemaSeatBookerTest {
 
@@ -36,5 +37,19 @@ public class CinemaSeatBookerTest {
         var ticketList = seatBooker.getSeat(orderAmount);
         assertEquals(Arrays.asList(expectedTickets.split(" ")), ticketList);
     }
+
+    @Test
+    public void testTotalTicketsIssuesIsSameAsFilledCinemaSeats() {
+        var seatBooker = new CinemaSeatBooker();
+        var ticketCustomerMap = seatBooker.bookAllSeats();
+        var totalTickets = ticketCustomerMap.values()
+                .stream()
+                .mapToInt(Collection::size)
+                .sum();
+
+        assertEquals(seatBooker.getFilledCinemaSeats(), totalTickets);
+    }
+
+
 
 }

@@ -49,9 +49,24 @@ public class CinemaSeatBooker {
         return ticketList;
     }
 
+    public Map<Integer, List<String>> bookAllSeats(){
+        Map<Integer, List<String>> customerToSeatMap = new HashMap<>();
+        int customerNumber = 1;
+        while (filledCinemaSeats < MAX_CINEMA_SEATS) {
+            var order = customerGeneratesOrder();
+            if ((order + filledCinemaSeats) > MAX_CINEMA_SEATS) {
+                return customerToSeatMap;
+            }
+            customerToSeatMap.put(customerNumber++, getSeat(order));
+        }
+        return customerToSeatMap;
+    }
+
     public int customerGeneratesOrder() {
         return rand.nextInt(MAX_ORDER) + 1;
     }
 
-
+    public int getFilledCinemaSeats() {
+        return filledCinemaSeats;
+    }
 }
