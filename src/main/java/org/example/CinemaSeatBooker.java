@@ -36,6 +36,8 @@ public class CinemaSeatBooker {
 
     static {
         ROW_NUMBER_SEAT_MAP.put(5, "A");
+        ROW_NUMBER_SEAT_MAP.put(10, "B");
+
     }
 
     public String getSeat(int order) {

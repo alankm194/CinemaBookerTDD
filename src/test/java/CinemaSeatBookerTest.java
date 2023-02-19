@@ -1,5 +1,6 @@
 import org.example.CinemaSeatBooker;
 import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
@@ -25,4 +26,12 @@ public class CinemaSeatBookerTest {
         assertEquals(expected, seatBooker.getSeat(1));
     }
 
+    @Test
+    public void whenCustomerOrders1SeatAnd5SeatsAreFilled_returnB1( ) {
+        CinemaSeatBooker seatBooker = new CinemaSeatBooker();
+        for (int i=1; i < 6; i++) {
+            seatBooker.getSeat(1);
+        }
+        assertEquals("B1", seatBooker.getSeat(1));
+    }
 }
