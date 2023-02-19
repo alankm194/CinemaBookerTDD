@@ -39,8 +39,8 @@ public class CinemaSeatBooker {
     }
 
     public String getSeat(int order) {
-        var seatNum = (filledCinemaSeats % MAX_CINEMA_SEATS) + 1;
-        var seatId = ROW_NUMBER_SEAT_MAP.ceilingEntry(filledCinemaSeats).getValue() + seatNum;
+        var seatNum = (filledCinemaSeats % 5) + 1;
+        var seatId = ROW_NUMBER_SEAT_MAP.higherEntry(filledCinemaSeats).getValue() + seatNum;
         filledCinemaSeats++;
         return seatId;
 

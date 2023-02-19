@@ -1,6 +1,7 @@
 import org.example.CinemaSeatBooker;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -14,16 +15,14 @@ public class CinemaSeatBookerTest {
         assertTrue(seatBooker.customerGeneratesOrder() > 0 && seatBooker.customerGeneratesOrder() <= 3);
     }
 
-    @Test
-    public void whenCustomerOrders1SeatAndIsFirstOrder_returnA1() {
+    @ParameterizedTest
+    @CsvFileSource(resources = "/orderToSeatId.csv")
+    public void whenCustomerOrders1SeatAndisXOrder_returnCorrectAnswer(int order, String  expected ) {
         CinemaSeatBooker seatBooker = new CinemaSeatBooker();
-        assertEquals("A1", seatBooker.getSeat(1));
+        for (int i=1; i < order; i++) {
+            seatBooker.getSeat(1);
+        }
+        assertEquals(expected, seatBooker.getSeat(1));
     }
 
-    @Test
-    public void whenCustomerOrders1SeatAndIsSecondOrder_returnA2() {
-        CinemaSeatBooker seatBooker = new CinemaSeatBooker();
-        seatBooker.getSeat(1);
-        assertEquals("A2", seatBooker.getSeat(1));
-    }
 }
