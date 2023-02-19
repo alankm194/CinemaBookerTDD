@@ -37,6 +37,7 @@ public class CinemaSeatBooker {
     static {
         ROW_NUMBER_SEAT_MAP.put(5, "A");
         ROW_NUMBER_SEAT_MAP.put(10, "B");
+        ROW_NUMBER_SEAT_MAP.put(15, "C");
 
     }
 
@@ -45,7 +46,6 @@ public class CinemaSeatBooker {
         var seatId = ROW_NUMBER_SEAT_MAP.higherEntry(filledCinemaSeats).getValue() + seatNum;
         filledCinemaSeats++;
         return seatId;
-
     }
 
     public int customerGeneratesOrder() {
