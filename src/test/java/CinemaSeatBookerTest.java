@@ -50,6 +50,16 @@ public class CinemaSeatBookerTest {
         assertEquals(seatBooker.getFilledCinemaSeats(), totalTickets);
     }
 
+    @Test
+    public void testAllCustomersHaveBetween1And3Seats() {
+        var seatBooker = new CinemaSeatBooker();
+        var ticketCustomerMap = seatBooker.bookAllSeats();
+        var isTicketOrderInvalid = ticketCustomerMap.values()
+                .stream()
+                .anyMatch(e -> e.size() == 0 || e.size() > 3 );
+
+        assertFalse(isTicketOrderInvalid);
+    }
 
 
 }
