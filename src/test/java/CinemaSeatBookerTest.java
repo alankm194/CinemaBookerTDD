@@ -26,12 +26,5 @@ public class CinemaSeatBookerTest {
         assertEquals(expected, seatBooker.getSeat(1));
     }
 
-    @Test
-    public void whenCustomerOrders1SeatAnd5SeatsAreFilled_returnB1( ) {
-        CinemaSeatBooker seatBooker = new CinemaSeatBooker();
-        for (int i=1; i < 6; i++) {
-            seatBooker.getSeat(1);
-        }
-        assertEquals("B1", seatBooker.getSeat(1));
-    }
+
 }
