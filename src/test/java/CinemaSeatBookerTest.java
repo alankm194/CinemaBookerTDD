@@ -15,7 +15,10 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CinemaSeatBookerTest {
 
     private CinemaSeatBooker seatBooker;
+    private static final int MIN_POSSIBLE_CUSTOMER = 5;
+    private static final int MAX_POSSIBLE_CUSTOMER = 15;
 
+    private static final int MAX_POSSIBLE_ORDER = 3;
     @BeforeEach
     public void init() {
         seatBooker = new CinemaSeatBooker();
@@ -59,15 +62,15 @@ public class CinemaSeatBookerTest {
         var ticketCustomerMap = seatBooker.bookAllSeats();
         var isTicketOrderInvalid = ticketCustomerMap.values()
                 .stream()
-                .anyMatch(e -> e.size() == 0 || e.size() > 3 );
+                .anyMatch(e -> e.size() == 0 || e.size() > MAX_POSSIBLE_ORDER );
 
         assertFalse(isTicketOrderInvalid);
     }
 
     @RepeatedTest(20)
-    public void testSeatBookerWillAlways5CustomersOrMore() {
+    public void testSeatBookerWillAlways5CustomersOrMoreAnd15orLess() {
         var ticketCustomerMap = seatBooker.bookAllSeats();
-        assertTrue(ticketCustomerMap.size() >= 5);
+        assertTrue(ticketCustomerMap.size() >= MIN_POSSIBLE_CUSTOMER
+                && ticketCustomerMap.size() <= MAX_POSSIBLE_CUSTOMER);
     }
-
 }
