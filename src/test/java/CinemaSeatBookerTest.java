@@ -1,8 +1,11 @@
 import org.example.CinemaSeatBooker;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.CsvSource;
+
+import java.util.Arrays;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -23,7 +26,15 @@ public class CinemaSeatBookerTest {
         for (int i=1; i < order; i++) {
             seatBooker.getSeat(1);
         }
-        assertEquals(expected, seatBooker.getSeat(1));
+        assertEquals(expected, seatBooker.getSeat(1).get(0));
+    }
+
+    @ParameterizedTest
+    @CsvSource({"1,'A1'", "2,'A1 A2'", "3,'A1 A2 A3'"})
+    public void When1CustomerOrdersMultipleTicket(int orderAmount, String expectedTickets) {
+        var seatBooker = new CinemaSeatBooker();
+        var ticketList = seatBooker.getSeat(orderAmount);
+        assertEquals(Arrays.asList(expectedTickets.split(" ")), ticketList);
     }
 
 }

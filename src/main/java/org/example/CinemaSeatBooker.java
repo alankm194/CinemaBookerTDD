@@ -1,8 +1,6 @@
 package org.example;
 
-import java.util.NavigableMap;
-import java.util.Random;
-import java.util.TreeMap;
+import java.util.*;
 /*
  * Assumptions:
  *  - when the last customer orders seats over the number of remaining seats left,
@@ -38,14 +36,17 @@ public class CinemaSeatBooker {
         ROW_NUMBER_SEAT_MAP.put(5, "A");
         ROW_NUMBER_SEAT_MAP.put(10, "B");
         ROW_NUMBER_SEAT_MAP.put(15, "C");
-
     }
 
-    public String getSeat(int order) {
-        var seatNum = (filledCinemaSeats % 5) + 1;
-        var seatId = ROW_NUMBER_SEAT_MAP.higherEntry(filledCinemaSeats).getValue() + seatNum;
-        filledCinemaSeats++;
-        return seatId;
+    public List<String> getSeat(int order) {
+        List<String> ticketList = new ArrayList<>();
+        for (int i = 0; i < order; i++) {
+            var seatNum = (filledCinemaSeats % 5) + 1;
+            var seatId = ROW_NUMBER_SEAT_MAP.higherEntry(filledCinemaSeats).getValue() + seatNum;
+            filledCinemaSeats++;
+            ticketList.add(seatId);
+        }
+        return ticketList;
     }
 
     public int customerGeneratesOrder() {
