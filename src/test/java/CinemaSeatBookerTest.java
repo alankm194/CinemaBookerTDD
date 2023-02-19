@@ -61,5 +61,11 @@ public class CinemaSeatBookerTest {
         assertFalse(isTicketOrderInvalid);
     }
 
+    @RepeatedTest(20)
+    public void testSeatBookerWillAlways5CustomersOrMore() {
+        var seatBooker = new CinemaSeatBooker();
+        var ticketCustomerMap = seatBooker.bookAllSeats();
+        assertTrue(ticketCustomerMap.size() >= 5);
+    }
 
 }
