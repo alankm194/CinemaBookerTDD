@@ -1,5 +1,6 @@
 package org.example;
 
+
 import java.util.*;
 /*
  * Assumptions:
@@ -26,16 +27,18 @@ public class CinemaSeatBooker {
 
     private static final Random rand = new Random();
 
-    private static final NavigableMap<Integer, String> ROW_NUMBER_SEAT_MAP = new TreeMap<>();
+    private static final NavigableMap<Integer, String> ROW_NUMBER_SEAT_MAP;
 
     private static final int MAX_CINEMA_SEATS = 15;
 
     private int filledCinemaSeats = 0;
 
     static {
-        ROW_NUMBER_SEAT_MAP.put(5, "A");
-        ROW_NUMBER_SEAT_MAP.put(10, "B");
-        ROW_NUMBER_SEAT_MAP.put(15, "C");
+        var map = new TreeMap<Integer, String>();
+        map.put(5, "A");
+        map.put(10, "B");
+        map.put(15, "C");
+        ROW_NUMBER_SEAT_MAP = Collections.unmodifiableNavigableMap(map);
     }
 
     public List<String> getSeat(int order) {
